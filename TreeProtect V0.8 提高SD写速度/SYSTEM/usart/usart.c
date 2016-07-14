@@ -714,7 +714,7 @@ void USART2_IRQHandler(void)                	//串口2中断服务程序  SD卡 接收
  
 /*******************************************************************************/	  
 //
-//								读写SD卡 查询风向
+//								读写SD卡 查询风向取消
 /*******************************************************************************/ 
 extern char g_uart3_used_for_SD;
 void USART3_IRQHandler(void)                	//串口4中断服务程序
@@ -723,46 +723,13 @@ void USART3_IRQHandler(void)                	//串口4中断服务程序
 	int i;
 	if(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET)  //接收中断
 	{
-		if(g_uart3_used_for_SD)
+
+		temp =USART_ReceiveData(USART3);
+		if(F_wait_response == 0x01)
 		{
-		
-			temp =USART_ReceiveData(USART3);
-			if(F_wait_response == 0x01)
-			{
-				SD_cmd_return_byte = temp;
-				F_wait_response = 0;
-			}
+			SD_cmd_return_byte = temp;
+			F_wait_response = 0;
 		}
-		else
-		{
-			USART_RX_BUF[2][12] =USART_ReceiveData(USART3);	//读取接收到的数据
-			//顺序往前推
-			for(i=0;i<12;i++)
-			{
-				USART_RX_BUF[2][i] = USART_RX_BUF[2][i+1];	
-			}
-			//地址1 是风向
-			if(USART_RX_BUF[2][0] == 0x01 && USART_RX_BUF[2][1] == 0x03 && USART_RX_BUF[2][2] == 0x02)
-			{
-				int crc16 = 0;
-				char crcFirst=0,crcAfter = 0;
-				short tempDir;
-				crc16 = getCRC16_LowFirst(USART_RX_BUF[2],5);
-				crcFirst = (crc16 & (0xFF<<8))>>8;
-				crcAfter = 	crc16;
-				//printf("U3-4\r\n");
-				if(USART_RX_BUF[2][5] == crcFirst && USART_RX_BUF[2][6] == crcAfter)//CRC通过
-				{		
-					tempDir =  USART_RX_BUF[2][3];
-					tempDir =  (tempDir<<8) + USART_RX_BUF[2][4]; //0~359度
-					if (tempDir)
-					{
-						g_WindDir =  tempDir;
-					}
-					//printf("U3-5\r\n");
-				}
-			}
-		} 
 	}	
 } 
 //称重
@@ -799,7 +766,7 @@ void UART4_IRQHandler(void)                	//串口4中断服务程序
 				Pa = (Pa<<8) + weight[3];
 				Pa = (Pa<<8) + weight[0];
 				Pa = (Pa<<8) + weight[1];
-				g_Pa = Pa;
+				g_Pa = -Pa;
 
 				//printf("U4-2\r\n");
 			}
@@ -872,6 +839,7 @@ void UART5_IRQHandler(void)                	//串口5中断服务程序
 					g_IndVal[i] = ind[2*i];
 					g_IndVal[i] = g_IndVal[i]<< 8;
 					g_IndVal[i] |= ind[2*i+1];
+					g_Temper = DS18B20_Get_Temp();
 				}
 			}
 		}

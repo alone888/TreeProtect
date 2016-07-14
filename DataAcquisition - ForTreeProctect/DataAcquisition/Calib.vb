@@ -71,8 +71,8 @@
             .Clear()
             .View = View.Details
             .FullRowSelect = True
-            .Columns.Add("实际位移量mm", 110)
             .Columns.Add("电压值mV", 80)
+            .Columns.Add("实际位移量mm", 110)
         End With
 
         For i As Integer = 0 To 20

@@ -930,7 +930,7 @@ Public Class Form
         show_flag(7) = Not show_flag(7)
     End Sub
 
-    Private Sub PCB1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PCB1.CheckedChanged
+    Private Sub PCB1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         show_flag(8) = Not show_flag(8)
     End Sub
 

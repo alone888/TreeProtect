@@ -58,12 +58,12 @@ char write_string_to_files(uchar * data)
 {
 	int waitCnt=0;
 	int maxWaitCnt = 100000;
-
+	int strlength = 0;
 
 	NORMALTIME time;
 	uchar fileName[30];//本来只有13长度，怕越界了
 	time = Time_GetTime();
-	sprintf(fileName,"%02d%02d%02d%02d.txt",time.tm_year-2000,time.tm_mon,time.tm_mday,time.tm_hour);
+	sprintf(fileName,"%02d%02d%02d%02d.csv",time.tm_year-2000,time.tm_mon,time.tm_mday,time.tm_hour);
 	
 	
 	//①获取系统状态  
@@ -144,6 +144,7 @@ char write_string_to_files(uchar * data)
 	
 	//④写入文件
 	//----------------------------------------------------------------------------
+	strlength = strlen(data)+4;
 	SD_send_data(SD_WRITE,strlen(data)+4,0xffffffff,data);
 	F_wait_response = 0x01;
 	SD_cmd_return_byte = 0;

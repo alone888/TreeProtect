@@ -11,10 +11,11 @@
 #include "crc16.h"
 /************************************************************/
 //更新说明：
-
-
-
-
+//1、取消风向
+//2、优化SD的读写速度，将数据写入速度提高到10Hz（接近极限）
+//3、将标定方式改为电压固定，位移可修改来标定（修改对应PC机软件）
+//4、将压力正负号调换
+//5、将SD卡改为向上
 /************************************************************/
 //5个串口  
 short g_IndVal[4];//±5mm  ±5000  以um为单位
@@ -187,7 +188,11 @@ char lastSDerr;//SD卡上次的错误
 char windSpeedDirFlag = 0;
 char g_uart3_used_for_SD=0;	 
 char CmdStr[200];
+char SDStr[1000]; //SD卡一次只能写入200个字节
 int dateSendtoPC[12];
+
+int SpeedTest=0;
+int SpeedTest2=0;
 int main(void)
 {		
 
@@ -206,7 +211,7 @@ int main(void)
 
 	uart1_init(115200);	 //上位机通信模块
 	uart2_init(9600);	 //风速传感器模块 A2 A3 要转为232
-	//uart3_init(19200);	 //SD卡模块	（兼职风向-因为3有重映射功能）
+	uart3_init(19200);	 //SD卡模块	（兼职风向-因为3有重映射功能）
 	uart4_init(9600);	 //称重模块
 	uart5_init(9600);	 //AD模块
 
@@ -221,10 +226,10 @@ int main(void)
 	OPEN_SD_POWER;
 
 	cur_time.tm_year = 2016; //2016-1900
-	cur_time.tm_mon = 5;
-	cur_time.tm_mday = 29;
-	cur_time.tm_hour = 23;
-	cur_time.tm_min = 56;
+	cur_time.tm_mon = 7;
+	cur_time.tm_mday = 13;
+	cur_time.tm_hour = 2;
+	cur_time.tm_min = 16;
 	cur_time.tm_sec = 2;
 
     RTC_Init(cur_time);//
@@ -254,51 +259,43 @@ int main(void)
 			g_IndValOffset[3]= -Volt2Distance(3,g_IndVal[3]);
 		}
 		
-		if(times%60==0) 
+		if(times%100==0) 
 		{
-			windSpeedDirFlag++;
 			sendWindSpeedCmd(); //串口2 带232
-			//printf("3\r\n");
-			if(5 == windSpeedDirFlag)
-			{
-				windSpeedDirFlag = 0; 	
-			}
-			//printf("4\r\n");
-			//风速的反应慢 一秒钟最多发一次指令 不然传感器要疯掉
-			if(0 == windSpeedDirFlag)
-			{
-				uart3_init(19200);	 //SD卡模块	（兼职风向-因为3有重映射功能）
-				g_uart3_used_for_SD = 1;
-								//				日期			时间		  位移1, 2,   3,  4	 |拉力|                    温度 |SD|风速|风向
-				sprintf(CmdStr,"#01,%02d-%02d-%02d,%02d:%02d:%02d,%04d,%04d,%04d,%04d,%04d,%04d,%04d,%04d,%04d,%04d,%1d,%04d,%04d!\r\n",
-												cur_time.tm_year,cur_time.tm_mon,cur_time.tm_mday,
-												cur_time.tm_hour,cur_time.tm_min,cur_time.tm_sec,
-												dateSendtoPC[0],dateSendtoPC[1],dateSendtoPC[2],dateSendtoPC[3],
-												dateSendtoPC[4],
-												dateSendtoPC[6],dateSendtoPC[7],dateSendtoPC[8],dateSendtoPC[9],
-												g_Temper,lastSDerr,g_WindSpeed,g_WindDir);
-				//printf("7\r\n");
-				lastSDerr = write_string_to_files(CmdStr);
-			}
-			else
-			{
-				//printf("8\r\n");
-				uart3_init2(9600);
-				//SD卡的usart3 重映射到 PB10 和PB11口 来读风向
-				g_uart3_used_for_SD = 0;
-				send_byte_to_usart3(0x02);//初始化完后第一个字节会发不成功
-				sendWindDirCmd();//串口3
-			}
-			//printf("11\r\n");
-			cur_time = Time_GetTime();
-		}  
+			
+		}
+		if(times%6==0) 
+		{
+			lastSDerr = write_string_to_files(SDStr);
+			memset(SDStr,0,sizeof(SDStr));
+		}
 
-		if(times%10==0) 
+			
+
+		if(times%3==0) 
 		{			
-			//sendWeightLoad1Cmd();
+			SpeedTest++;
+			cur_time = Time_GetTime();
+									//				日期			时间		  位移1, 2,   3,  4	 |拉力|                    温度 |SD|风速|风向
+//			sprintf(CmdStr,"#%02d,%02d-%02d-%02d,%02d:%02d:%02d,%04d,%04d,%04d,%04d,%04d,%04d,%04d,%04d,%04d,%04d,%1d,%04d,%04d!\r",
+//											SpeedTest,cur_time.tm_year,cur_time.tm_mon,cur_time.tm_mday,
+//											cur_time.tm_hour,cur_time.tm_min,cur_time.tm_sec,
+//											dateSendtoPC[0],dateSendtoPC[1],dateSendtoPC[2],dateSendtoPC[3],
+//											dateSendtoPC[4],
+//											dateSendtoPC[6],dateSendtoPC[7],dateSendtoPC[8],dateSendtoPC[9],
+//											g_Temper,lastSDerr,g_WindSpeed,g_WindDir);
+			sprintf(CmdStr,"%02d-%02d-%02d,%02d:%02d:%02d,%04d,%04d,%04d,%04d,%.3f,%04d,%04d,%04d,%04d,%.2f,%1d,%.1f\r",
+											cur_time.tm_year-2000,cur_time.tm_mon,cur_time.tm_mday,
+											cur_time.tm_hour,cur_time.tm_min,cur_time.tm_sec,
+											dateSendtoPC[0],dateSendtoPC[1],dateSendtoPC[2],dateSendtoPC[3],
+											(float)dateSendtoPC[4]/1000,
+											dateSendtoPC[6],dateSendtoPC[7],dateSendtoPC[8],dateSendtoPC[9],
+											g_Temper,lastSDerr,(float)g_WindSpeed/10);
+			sprintf(SDStr,"%s%s",SDStr,CmdStr);
+
 			//称重标定代码
 			//printf("12\r\n");
-			switch(PC_Wcmd)
+			switch(PC_Wcmd)//标定称重传感器
 			{
 				case 0x30:
 					//printf("13\r\n");
@@ -343,7 +340,7 @@ int main(void)
 			dateSendtoPC[8] = g_IndValOffset[2] + Volt2Distance(2,g_IndVal[2]);
 			dateSendtoPC[9] = g_IndValOffset[3] + Volt2Distance(3,g_IndVal[3]);
 		}
-		switch(PC_cmd)
+		switch(PC_cmd)//处理PC的通信
 		{
 			case 1:
 				BLED2 = 1;
@@ -392,7 +389,7 @@ int main(void)
 			break; 		
 		}
 		times++;  
-		delay_ms(10);  
+		//delay_ms(1);  
 	}	 
  }
 

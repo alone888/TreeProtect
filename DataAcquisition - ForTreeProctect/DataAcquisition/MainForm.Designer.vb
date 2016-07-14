@@ -38,7 +38,6 @@ Partial Class Form
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.speed_ok = New System.Windows.Forms.Button()
-        Me.PCB1 = New System.Windows.Forms.CheckBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.BL2 = New System.Windows.Forms.Label()
         Me.BL1 = New System.Windows.Forms.Label()
@@ -99,10 +98,10 @@ Partial Class Form
         Me.Label12 = New System.Windows.Forms.Label()
         Me.LabelDate = New System.Windows.Forms.Label()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
         Me.LabelWDir = New System.Windows.Forms.Label()
         Me.LabelWSpeed = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -132,16 +131,6 @@ Partial Class Form
         Me.speed_ok.TabIndex = 20
         Me.speed_ok.Text = "确定"
         Me.speed_ok.UseVisualStyleBackColor = True
-        '
-        'PCB1
-        '
-        Me.PCB1.AutoSize = True
-        Me.PCB1.Location = New System.Drawing.Point(29, 112)
-        Me.PCB1.Name = "PCB1"
-        Me.PCB1.Size = New System.Drawing.Size(60, 16)
-        Me.PCB1.TabIndex = 26
-        Me.PCB1.Text = "通道一"
-        Me.PCB1.UseVisualStyleBackColor = True
         '
         'GroupBox2
         '
@@ -253,7 +242,6 @@ Partial Class Form
         Me.GroupBox3.Controls.Add(Me.GroupBox5)
         Me.GroupBox3.Controls.Add(Me.Label11)
         Me.GroupBox3.Controls.Add(Me.PL1)
-        Me.GroupBox3.Controls.Add(Me.PCB1)
         Me.GroupBox3.Location = New System.Drawing.Point(260, 435)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(270, 261)
@@ -527,6 +515,7 @@ Partial Class Form
         Me.B_SAVE.TabIndex = 35
         Me.B_SAVE.Text = "导出数据"
         Me.B_SAVE.UseVisualStyleBackColor = True
+        Me.B_SAVE.Visible = False
         '
         'GroupBox4
         '
@@ -967,6 +956,25 @@ Partial Class Form
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "风速风向"
         '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(28, 144)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(47, 12)
+        Me.Label17.TabIndex = 34
+        Me.Label17.Text = "风向 °"
+        Me.Label17.Visible = False
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(19, 51)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(53, 12)
+        Me.Label16.TabIndex = 34
+        Me.Label16.Text = "风速 m/s"
+        '
         'LabelWDir
         '
         Me.LabelWDir.AutoSize = True
@@ -978,6 +986,7 @@ Partial Class Form
         Me.LabelWDir.TabIndex = 33
         Me.LabelWDir.Text = "123.45"
         Me.LabelWDir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LabelWDir.Visible = False
         '
         'LabelWSpeed
         '
@@ -990,24 +999,6 @@ Partial Class Form
         Me.LabelWSpeed.TabIndex = 33
         Me.LabelWSpeed.Text = "123.45"
         Me.LabelWSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(19, 51)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(53, 12)
-        Me.Label16.TabIndex = 34
-        Me.Label16.Text = "风速 m/s"
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(28, 144)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(47, 12)
-        Me.Label17.TabIndex = 34
-        Me.Label17.Text = "风向 °"
         '
         'Form
         '
@@ -1071,7 +1062,6 @@ Partial Class Form
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents speed_ok As System.Windows.Forms.Button
-    Friend WithEvents PCB1 As System.Windows.Forms.CheckBox
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents BCB4 As System.Windows.Forms.CheckBox
     Friend WithEvents BCB3 As System.Windows.Forms.CheckBox
