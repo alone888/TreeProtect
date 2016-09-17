@@ -122,7 +122,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGTARM</Key>
-          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(100=-1,-1,-1,-1,0)(110=-1,-1,-1,-1,0)(111=-1,-1,-1,-1,0)(1011=-1,-1,-1,-1,0)(180=-1,-1,-1,-1,0)(120=556,179,967,573,0)(121=955,374,1366,768,0)(122=-1,-1,-1,-1,0)(123=-1,-1,-1,-1,0)(124=617,182,1028,576,0)(125=-1,-1,-1,-1,0)(126=-1,-1,-1,-1,0)(140=-1,-1,-1,-1,0)(240=-1,-1,-1,-1,0)(190=-1,-1,-1,-1,0)(200=-1,-1,-1,-1,0)(170=-1,-1,-1,-1,0)(130=174,85,758,768,0)(131=-1,-1,-1,-1,0)(132=775,85,1359,768,0)(133=-1,-1,-1,-1,0)(160=-1,-1,-1,-1,0)(161=-1,-1,-1,-1,0)(162=928,188,1366,591,0)(210=-1,-1,-1,-1,0)(211=-1,-1,-1,-1,0)(220=-1,-1,-1,-1,0)(221=-1,-1,-1,-1,0)(230=-1,-1,-1,-1,0)(231=-1,-1,-1,-1,0)(232=-1,-1,-1,-1,0)(233=-1,-1,-1,-1,0)(150=-1,-1,-1,-1,0)(151=-1,-1,-1,-1,0)</Name>
+          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(100=-1,-1,-1,-1,0)(110=-1,-1,-1,-1,0)(111=-1,-1,-1,-1,0)(1011=-1,-1,-1,-1,0)(180=-1,-1,-1,-1,0)(120=556,179,967,573,0)(121=949,374,1360,768,0)(122=-1,-1,-1,-1,0)(123=-1,-1,-1,-1,0)(124=617,182,1028,576,0)(125=-1,-1,-1,-1,0)(126=-1,-1,-1,-1,0)(140=-1,-1,-1,-1,0)(240=-1,-1,-1,-1,0)(190=-1,-1,-1,-1,0)(200=-1,-1,-1,-1,0)(170=-1,-1,-1,-1,0)(130=174,85,758,768,0)(131=-1,-1,-1,-1,0)(132=775,85,1359,768,0)(133=-1,-1,-1,-1,0)(160=-1,-1,-1,-1,0)(161=-1,-1,-1,-1,0)(162=922,188,1360,591,0)(210=-1,-1,-1,-1,0)(211=-1,-1,-1,-1,0)(220=-1,-1,-1,-1,0)(221=-1,-1,-1,-1,0)(230=-1,-1,-1,-1,0)(231=-1,-1,-1,-1,0)(232=-1,-1,-1,-1,0)(233=-1,-1,-1,-1,0)(150=-1,-1,-1,-1,0)(151=-1,-1,-1,-1,0)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -142,7 +142,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>JL2CM3</Key>
-          <Name>-U68000019 -O78 -S9 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(1BA01477) -L00(4) -TO18 -TC10000000 -TP21 -TDS8008 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO15 -FD20000000 -FC800 -FN1 -FF0STM32F10x_512 -FS08000000 -FL080000</Name>
+          <Name>-U304439649 -O14 -S9 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight JTAG-DP") -D00(3BA00477) -L00(4) -N01("Unknown JTAG device") -D01(06414041) -L01(5) -TO18 -TC10000000 -TP21 -TDS8008 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO15 -FD20000000 -FC800 -FN1 -FF0STM32F10x_512 -FS08000000 -FL080000</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
       <WatchWindow1>
@@ -211,6 +211,36 @@
           <WinNumber>1</WinNumber>
           <ItemText>lastSDerr</ItemText>
         </Ww>
+        <Ww>
+          <count>13</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>g_WindSpeed,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>14</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>(float)g_WindSpeed/10</ItemText>
+        </Ww>
+        <Ww>
+          <count>15</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>SpeedTest</ItemText>
+        </Ww>
+        <Ww>
+          <count>16</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>dateSendtoPC[4],0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>17</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>IndCalib,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>18</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>CalibCnt</ItemText>
+        </Ww>
       </WatchWindow1>
       <WatchWindow2>
         <Ww>
@@ -223,7 +253,7 @@
         <Mm>
           <WinNumber>1</WinNumber>
           <SubType>8</SubType>
-          <ItemText>number</ItemText>
+          <ItemText>CmdStr</ItemText>
         </Mm>
       </MemoryWindow1>
       <DebugFlag>
@@ -268,10 +298,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>34</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>334</TopLine>
-      <CurrentLine>334</CurrentLine>
+      <TopLine>191</TopLine>
+      <CurrentLine>197</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -446,7 +476,7 @@
       <Focus>0</Focus>
       <ColumnNumber>17</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>242</TopLine>
+      <TopLine>245</TopLine>
       <CurrentLine>252</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\HARDWARE\SDCARD\sd_card.c</PathWithFileName>
@@ -472,10 +502,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>33</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>104</TopLine>
-      <CurrentLine>104</CurrentLine>
+      <TopLine>166</TopLine>
+      <CurrentLine>173</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\HARDWARE\SDCARD\files_sd.c</PathWithFileName>
       <FilenameWithoutPath>files_sd.c</FilenameWithoutPath>
@@ -495,8 +525,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>139</TopLine>
-      <CurrentLine>144</CurrentLine>
+      <TopLine>140</TopLine>
+      <CurrentLine>146</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\SYSTEM\delay\delay.c</PathWithFileName>
       <FilenameWithoutPath>delay.c</FilenameWithoutPath>
@@ -521,10 +551,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>4</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>757</TopLine>
-      <CurrentLine>767</CurrentLine>
+      <TopLine>640</TopLine>
+      <CurrentLine>640</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\SYSTEM\usart\usart.c</PathWithFileName>
       <FilenameWithoutPath>usart.c</FilenameWithoutPath>
@@ -549,10 +579,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>22</ColumnNumber>
+      <ColumnNumber>23</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>20</TopLine>
+      <CurrentLine>20</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\SYSTEM\dataFlash\dataFlash.c</PathWithFileName>
       <FilenameWithoutPath>dataFlash.c</FilenameWithoutPath>
@@ -563,10 +593,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>17</ColumnNumber>
+      <ColumnNumber>77</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>34</TopLine>
-      <CurrentLine>44</CurrentLine>
+      <TopLine>37</TopLine>
+      <CurrentLine>37</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\SYSTEM\calib\calib.c</PathWithFileName>
       <FilenameWithoutPath>calib.c</FilenameWithoutPath>
@@ -635,8 +665,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>281</TopLine>
-      <CurrentLine>289</CurrentLine>
+      <TopLine>282</TopLine>
+      <CurrentLine>291</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_gpio.c</PathWithFileName>
       <FilenameWithoutPath>stm32f10x_gpio.c</FilenameWithoutPath>
@@ -663,8 +693,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>985</TopLine>
-      <CurrentLine>985</CurrentLine>
+      <TopLine>888</TopLine>
+      <CurrentLine>895</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_usart.c</PathWithFileName>
       <FilenameWithoutPath>stm32f10x_usart.c</FilenameWithoutPath>
@@ -742,7 +772,7 @@
   </Group>
 
   <AlienFiles>
-    <PathWithFilename>D:\项目类\【2016年1月】刘总项目类\【2016年4月】TreeProtect\TreeProtect1\TreeProtect V0.8 提高SD写速度\SYSTEM\usart\usart.h</PathWithFilename>
+    <PathWithFilename>C:\Users\Administrator\Desktop\TreeProtect V0.8 提高SD写速度\SYSTEM\usart\usart.h</PathWithFilename>
     <TopLine>32</TopLine>
     <CurrentLine>32</CurrentLine>
     <Constant>0</Constant>
@@ -768,8 +798,8 @@
   </AlienFiles>
 
   <AlienFiles>
-    <PathWithFilename>D:\项目类\【2016年1月】刘总项目类\【2016年4月】TreeProtect\TreeProtect1\TreeProtect V0.8 提高SD写速度\HARDWARE\LED\led.h</PathWithFilename>
-    <TopLine>11</TopLine>
+    <PathWithFilename>C:\Users\Administrator\Desktop\TreeProtect V0.8 提高SD写速度\HARDWARE\LED\led.h</PathWithFilename>
+    <TopLine>14</TopLine>
     <CurrentLine>21</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
@@ -794,7 +824,7 @@
   </AlienFiles>
 
   <AlienFiles>
-    <PathWithFilename>D:\项目类\【2016年1月】刘总项目类\【2016年4月】TreeProtect\TreeProtect1\TreeProtect V0.8 提高SD写速度\HARDWARE\SDCARD\sd_card.h</PathWithFilename>
+    <PathWithFilename>C:\Users\Administrator\Desktop\TreeProtect V0.8 提高SD写速度\HARDWARE\SDCARD\sd_card.h</PathWithFilename>
     <TopLine>22</TopLine>
     <CurrentLine>29</CurrentLine>
     <Constant>0</Constant>
@@ -824,25 +854,49 @@
     <ActiveMDIGroup>0</ActiveMDIGroup>
     <MDIGroup>
       <Size>100</Size>
-      <ActiveTab>5</ActiveTab>
+      <ActiveTab>0</ActiveTab>
       <Documents>
         <Doc>
-          <Name>..\STM32F10x_FWLib\src\stm32f10x_usart.c</Name>
+          <Name>..\SYSTEM\delay\delay.c</Name>
           <ColumnNumber>0</ColumnNumber>
-          <TopLine>985</TopLine>
-          <CurrentLine>985</CurrentLine>
+          <TopLine>140</TopLine>
+          <CurrentLine>146</CurrentLine>
         </Doc>
         <Doc>
-          <Name>..\SYSTEM\calib\calib.c</Name>
-          <ColumnNumber>17</ColumnNumber>
-          <TopLine>34</TopLine>
-          <CurrentLine>44</CurrentLine>
+          <Name>.\main.c</Name>
+          <ColumnNumber>0</ColumnNumber>
+          <TopLine>191</TopLine>
+          <CurrentLine>197</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>..\STM32F10x_FWLib\src\stm32f10x_gpio.c</Name>
+          <ColumnNumber>0</ColumnNumber>
+          <TopLine>282</TopLine>
+          <CurrentLine>291</CurrentLine>
         </Doc>
         <Doc>
           <Name>..\SYSTEM\usart\usart.c</Name>
+          <ColumnNumber>4</ColumnNumber>
+          <TopLine>640</TopLine>
+          <CurrentLine>640</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>..\SYSTEM\dataFlash\dataFlash.c</Name>
+          <ColumnNumber>23</ColumnNumber>
+          <TopLine>20</TopLine>
+          <CurrentLine>20</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>..\STM32F10x_FWLib\src\stm32f10x_usart.c</Name>
           <ColumnNumber>0</ColumnNumber>
-          <TopLine>757</TopLine>
-          <CurrentLine>767</CurrentLine>
+          <TopLine>888</TopLine>
+          <CurrentLine>895</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>..\SYSTEM\calib\calib.c</Name>
+          <ColumnNumber>77</ColumnNumber>
+          <TopLine>37</TopLine>
+          <CurrentLine>37</CurrentLine>
         </Doc>
         <Doc>
           <Name>..\HARDWARE\SDCARD\sd_card.h</Name>
@@ -853,32 +907,20 @@
         <Doc>
           <Name>..\HARDWARE\SDCARD\sd_card.c</Name>
           <ColumnNumber>17</ColumnNumber>
-          <TopLine>242</TopLine>
+          <TopLine>245</TopLine>
           <CurrentLine>252</CurrentLine>
         </Doc>
         <Doc>
-          <Name>.\main.c</Name>
-          <ColumnNumber>34</ColumnNumber>
-          <TopLine>334</TopLine>
-          <CurrentLine>334</CurrentLine>
-        </Doc>
-        <Doc>
           <Name>..\HARDWARE\SDCARD\files_sd.c</Name>
-          <ColumnNumber>33</ColumnNumber>
-          <TopLine>104</TopLine>
-          <CurrentLine>104</CurrentLine>
+          <ColumnNumber>0</ColumnNumber>
+          <TopLine>166</TopLine>
+          <CurrentLine>173</CurrentLine>
         </Doc>
         <Doc>
           <Name>..\HARDWARE\LED\led.h</Name>
           <ColumnNumber>8</ColumnNumber>
-          <TopLine>11</TopLine>
+          <TopLine>14</TopLine>
           <CurrentLine>21</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>..\STM32F10x_FWLib\src\stm32f10x_gpio.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>281</TopLine>
-          <CurrentLine>289</CurrentLine>
         </Doc>
         <Doc>
           <Name>..\HARDWARE\TEMPERATURE\ds18B20.c</Name>
@@ -891,12 +933,6 @@
           <ColumnNumber>64</ColumnNumber>
           <TopLine>32</TopLine>
           <CurrentLine>32</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>..\SYSTEM\delay\delay.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>139</TopLine>
-          <CurrentLine>144</CurrentLine>
         </Doc>
         <Doc>
           <Name>..\HARDWARE\LED\led.c</Name>
